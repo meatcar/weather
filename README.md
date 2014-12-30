@@ -7,7 +7,7 @@ A barebones Node.js app using [Express 4](http://expressjs.com/).
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
 
 ```sh
-git clone git@github.com:heroku/node-js-sample.git # or clone your own fork
+git clone git@github.com:rchrd2/dokku-node-js-example.git # or clone your own fork
 cd node-js-sample
 npm install
 npm start
@@ -15,18 +15,13 @@ npm start
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
-## Deploying to Heroku
+## Deploying to Dokku
 
 ```
-heroku create
-git push heroku master
-heroku open
+git remote add dokku dokku@<dokku-server>:dokku-node-js-example
+git push dokku master
+# open dokku-node-js-example.<dokku-server>
 ```
-
-Alternatively, you can deploy your own copy of the app using this experimental
-web-based flow:
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Documentation
 
