@@ -15,7 +15,8 @@ router.get('/', function(req, res) {
     res.render('index', {
       title: 'Weather Toronto',
       date: moment(current.date, 'YYYY-MM-DD').format('dddd MMMM Do YYYY'),
-      temp: current.temperature
+      temp: current.temperature,
+      data: current
     });
   });
 });
