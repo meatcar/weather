@@ -1,23 +1,36 @@
+Forecasts = new Mongo.Collection("forecasts");
+
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+  Meteor.subscribe("forecast");
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+  Template.body.helpers({
+    forecast: function () {
+      return Forecasts.find({}, {limit: 1});
     }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
+  })
 }
 
 if (Meteor.isServer) {
+  Meteor.publish("forecast", function () {
+    return Forecasts.find({}, {limit: 1})
+  })
+
   Meteor.startup(function () {
-    // code to run on server at startup
+    if (Forecasts.find({}).count() != 0) {
+      return;
+    }
+
+    weatherjs.find({search: 'Toronto, ON, Canada', degreeType: 'C'},
+      Meteor.bindEnvironment(function (err, result) {
+        if (err) {
+          throw err;
+        }
+
+        var data = result[0].current;
+        data.formattedDate = moment(data.date, 'YYYY-MM-DD').format('dddd MMMM Do YYYY');
+
+        console.log(data);
+        Forecasts.insert(data);
+      }));
   });
 }

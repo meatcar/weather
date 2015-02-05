@@ -1,14 +1,26 @@
 <head>
-  <title>guess-the-feels</title>
+  <title>Guess the Feels</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+  {{#with forecast}}
+    {{> weather}}
+    {{> guess}}
+  {{/with}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="weather">
+  <h2>{{observationpoint}}</h2>
+  <h3>{{formattedDate}}</h3>
+  <h1><img src="{{imageUrl}}" /> {{temperature}} C</h1>
+  <p><b>Feels like:</b> {{temperature}} C</p>
+  <p><b>Humidity:</b> {{humidity}}%</p>
+  <p><b>Wind:</b> {{winddisplay}}</p>
+</template>
+
+<template name="guess">
+  <form>
+    <label>Guess what it feels like!</label>
+    <input type="text">
+  </form>
 </template>
