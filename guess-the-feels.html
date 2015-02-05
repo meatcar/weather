@@ -3,13 +3,13 @@
 </head>
 
 <body>
-  {{#with forecast}}
-    {{> weather}}
+  {{#each forecasts}}
+    {{> forecast}}
     {{> guess}}
-  {{/with}}
+  {{/each}}
 </body>
 
-<template name="weather">
+<template name="forecast">
   <h2>{{observationpoint}}</h2>
   <h3>{{formattedDate}}</h3>
   <h1><img src="{{imageUrl}}" /> {{temperature}} C</h1>

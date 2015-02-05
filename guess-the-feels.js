@@ -4,7 +4,7 @@ if (Meteor.isClient) {
   Meteor.subscribe("forecast");
 
   Template.body.helpers({
-    forecast: function () {
+    forecasts: function () {
       return Forecasts.find({}, {limit: 1});
     }
   })
