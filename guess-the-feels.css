@@ -1,1 +1,13 @@
 /* CSS declarations go here */
+.forecast input {
+    border: none;
+    width: 100%;
+}
+
+.forecast .location {
+    font-size: 2em;
+}
+
+.forecast .degree-type {
+    color: black;
+}

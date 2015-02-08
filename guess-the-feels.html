@@ -4,18 +4,22 @@
 
 <body>
   {{#each forecasts}}
+    {{#with current}}
     {{> forecast}}
+    {{/with}}
     {{> guess}}
   {{/each}}
 </body>
 
 <template name="forecast">
-  <h2>{{observationpoint}}</h2>
-  <h3>{{formattedDate}}</h3>
-  <h1><img src="{{imageUrl}}" /> {{temperature}} C</h1>
-  <p><b>Feels like:</b> {{temperature}} C</p>
-  <p><b>Humidity:</b> {{humidity}}%</p>
-  <p><b>Wind:</b> {{winddisplay}}</p>
+  <div class="forecast">
+    <input type="text" value="{{observationpoint}}" class="location">
+    <h3>{{formattedDate}}</h3>
+    <h1><img src="{{imageUrl}}" /> {{temperature}} <a href="#" class="degree-type">{{degreeType}}</a></h1>
+    <p><b>Feels like:</b> {{temperature}} C</p>
+    <p><b>Humidity:</b> {{humidity}}%</p>
+    <p><b>Wind:</b> {{winddisplay}}</p>
+  </div>
 </template>
 
 <template name="guess">
